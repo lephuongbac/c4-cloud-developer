@@ -1,13 +1,13 @@
 import * as AWS from 'aws-sdk'
 import * as AWSXRay from 'aws-xray-sdk'
-import { DocumentClient } from 'aws-sdk/clients/dynamodb'
+// import { DocumentClient } from 'aws-sdk/clients/dynamodb'
 import { createLogger } from '../utils/logger'
 import { TodoItem } from '../models/TodoItem'
 import { TodoUpdate } from '../models/TodoUpdate'
 
-if (process.env._X_AMZN_TRACE_ID) {
-  const XAWS = AWSXRay.captureAWS(AWS)
-}
+// if (process.env._X_AMZN_TRACE_ID) {
+// }
+AWSXRay.captureAWS(AWS)
 
 const logger = createLogger('TodosAccess')
 
@@ -18,7 +18,7 @@ const client = new AWS.DynamoDB.DocumentClient()
 // TODO: Implement the dataLayer logic
 export class TodoAccess {
   async getAllTodos(userId: string) {
-    console.log('AAA')
+    logger.info('Getting all todos')
     const result = await client
       .query({
         TableName: TODOS_TABLE,

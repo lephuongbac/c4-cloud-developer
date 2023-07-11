@@ -3,9 +3,9 @@ import { AttachmentUtils } from './attachmentUtils'
 import { TodoItem } from '../models/TodoItem'
 import { CreateTodoRequest } from '../requests/CreateTodoRequest'
 import { UpdateTodoRequest } from '../requests/UpdateTodoRequest'
-import { createLogger } from '../utils/logger'
+// import { createLogger } from '../utils/logger'
 import * as uuid from 'uuid'
-import * as createError from 'http-errors'
+// import * as createError from 'http-errors'
 
 // TODO: Implement businessLogic
 export class TodoModel {
@@ -62,11 +62,11 @@ export class TodoModel {
     userId: string
   }) {
     const imageId = uuid.v4()
-    AttachmentUtils.getAttachmentUrl(imageId)
+    const attachmentUrl = AttachmentUtils.getAttachmentUrl(imageId)
 
     const uploadUrl = AttachmentUtils.getUploadUrl(imageId)
 
-    await this.todoAccess.updateAttachmentUrl(uploadUrl, todoId, userId)
+    await this.todoAccess.updateAttachmentUrl(todoId, userId, attachmentUrl)
 
     return uploadUrl
   }
