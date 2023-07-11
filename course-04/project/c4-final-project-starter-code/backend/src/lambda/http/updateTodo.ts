@@ -6,7 +6,7 @@ import { cors, httpErrorHandler } from 'middy/middlewares'
 
 import { UpdateTodoRequest } from '../../requests/UpdateTodoRequest'
 import { getUserId } from '../utils'
-import { todoModel } from '../../helpers/todos'
+import { todoModel } from '../../services/todos'
 import { createLogger } from '../../utils/logger'
 
 const logger = createLogger('update-todo')
